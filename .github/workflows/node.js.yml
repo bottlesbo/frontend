@@ -1,4 +1,4 @@
-retname: Test_Build_GitHub_CI
+name: Test_Build_GitHub_CI
 
 on:
   push:
