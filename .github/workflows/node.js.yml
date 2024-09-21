@@ -31,4 +31,4 @@ jobs:
           docker ps -a;
           npm install;
           npm run build;
-          echo "Операция успешно проведена!";
+          echo "Операция успешно проведена!!!";
