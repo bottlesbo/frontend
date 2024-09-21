@@ -29,6 +29,6 @@ jobs:
           cd ${{ secrets.PROJECT_FOLDER }};
           git pull origin main;
           docker ps -a;
-          npm install;
-          npm run build;
+           /home/father/.nvm/versions/node/v16.20.2/bin/npm install ;
+           /home/father/.nvm/versions/node/v16.20.2/bin/npm run build;
           echo "Операция успешно проведена!!!";
