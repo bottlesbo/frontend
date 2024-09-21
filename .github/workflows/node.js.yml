@@ -28,6 +28,7 @@ jobs:
         command: |
           cd ${{ secrets.PROJECT_FOLDER }};
           git pull origin main;
+          docker ps -a
           npm install;
           npm run build;
           echo "Операция успешно проведена!";
