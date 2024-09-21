@@ -1,12 +1,33 @@
-name: Build
+name: Test_Build_GitHub_CI
+
 on:
   push:
     branches: [ "main" ]
-    
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
-  test_build:
-       runs-on: ubuntu-latest
-       steps:
-       - uses: actions/checkout@v3
-       - name: Run a one-line script
-         run: echo Hello, world!
+  build:
+    runs-on: ubuntu-latest
+
+    # strategy:
+    #   matrix:
+    #     node-version: [18.x]
+    #     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run command on remote server
+      uses: D3rHase/ssh-command-action@v0.2.2
+      with:
+        host: ${{secrets.SSH_HOST}}
+        user: ${{secrets.SSH_USER}}
+        port: ${{secrets.SSH_PORT}}
+        private_key: ${{secrets.SSH_PRIVATE_KEY}}
+#        host_fingerprint: ${{secrets.HOST_FINGERPRINT}}
+        command: |
+          cd ${{ secrets.PROJECT_FOLDER }};
+          git pull origin main;
+          npm install;
+          npm run build;
+          echo "Операция успешно проведена!";
